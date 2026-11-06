@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#5b5bf0"><link rel="apple-touch-icon" href="icon-192.png">
+<title>TaskFlow – Smart Productivity Dashboard</title>
+<link rel="stylesheet" href="css/style.css"></head><body>
+<div id="loader"><div class="spin"></div></div>
+<aside id="side"><div class="logo"><i data-lucide="check-circle-2"></i>TaskFlow</div>
+<nav>
+<button data-v="dash" class="on"><i data-lucide="layout-dashboard"></i>Dashboard</button>
+<button data-v="tasks"><i data-lucide="list-checks"></i>Tasks</button>
+<button data-v="board"><i data-lucide="columns-3"></i>Board</button>
+<button data-v="cal"><i data-lucide="calendar"></i>Calendar</button>
+<button data-v="stats"><i data-lucide="bar-chart-3"></i>Analytics</button>
+<button data-v="arch"><i data-lucide="archive"></i>Archive</button>
+</nav>
+<div class="foot"><div class="me"><span id="av"></span><input id="name" aria-label="Display name"></div>
+<button id="exp"><i data-lucide="download"></i>Export JSON</button>
+<label class="btn"><i data-lucide="upload"></i>Import JSON<input type="file" id="imp" accept=".json" hidden></label></div></aside>
+<main>
+<header><button id="menu" class="icon" aria-label="Menu"><i data-lucide="menu"></i></button>
+<input id="q" placeholder="Search tasks  ( / )  ·  Ctrl+K for commands" aria-label="Search">
+<button id="theme" class="icon" aria-label="Toggle theme"><i data-lucide="moon"></i></button>
+<button id="add" class="primary"><i data-lucide="plus"></i>New task</button></header>
+
+<section id="v-dash" class="view on">
+<h1 id="hi"></h1>
+<div class="grid4" id="cards"></div>
+<div class="panel"><div class="row"><b>Overall completion</b><span id="pp"></span></div><div class="bar"><i id="pb"></i></div></div>
+<div class="grid2"><div class="panel"><b>Daily goal</b><div class="bar"><i id="gb"></i></div><p id="gt" class="muted"></p>
+<label class="muted">Goal (tasks/day) <input id="goal" type="number" min="1" max="20"></label></div>
+<div class="panel"><b>Productivity streak</b><p class="big" id="streak"></p></div></div>
+<div class="panel"><b>Upcoming</b><div id="up"></div></div>
+</section>
+
+<section id="v-tasks" class="view">
+<div class="filters"><select id="fs"><option value="">All status</option><option value="todo">To Do</option><option value="progress">In Progress</option><option value="done">Completed</option><option value="over">Overdue</option></select>
+<select id="fp"><option value="">All priority</option><option>High</option><option>Medium</option><option>Low</option></select>
+<select id="fc"></select>
+<select id="so"><option value="date">Sort: due date</option><option value="pri">Sort: priority</option><option value="name">Sort: name</option></select>
+<select id="fr"><option value="">Any time</option><option value="day">Today</option><option value="week">This week</option><option value="month">This month</option></select></div>
+<div id="bulk"></div><div id="list"></div></section>
+
+<section id="v-board" class="view"><div class="kan" id="kan"></div></section>
+<section id="v-cal" class="view"><div class="row"><button class="icon" id="pm">‹</button><h2 id="ct"></h2><button class="icon" id="nm">›</button></div><div class="cal" id="cal"></div></section>
+<section id="v-stats" class="view"><div class="grid2"><div class="panel"><b>Completed – last 7 days</b><canvas id="c1"></canvas></div><div class="panel"><b>Tasks by category</b><canvas id="c2"></canvas></div></div><div class="panel"><b>Activity – last 5 weeks</b><div class="heat" id="heat"></div></div><div class="panel" id="ins"></div></section>
+<section id="v-arch" class="view"><div id="alist"></div></section>
+</main>
+
+<div class="modal" id="m"><form id="f" class="box" role="dialog" aria-modal="true" aria-label="Task form"><h2 id="mt">New task</h2>
+<input id="t" placeholder="Title *" maxlength="80" required>
+<textarea id="d" placeholder="Description / notes" rows="2"></textarea>
+<div class="g2"><select id="c"></select><select id="p"><option>High</option><option selected>Medium</option><option>Low</option></select>
+<input id="due" type="datetime-local"><select id="r"><option value="">No repeat</option><option value="day">Daily</option><option value="week">Weekly</option><option value="month">Monthly</option></select></div>
+<textarea id="s" placeholder="Subtasks (one per line)" rows="3"></textarea>
+<div class="row"><button type="button" id="nc" class="btn">+ Category</button><span><button type="button" id="x" class="btn">Cancel</button> <button class="primary">Save</button></span></div></form></div>
+<div class="modal" id="cf"><div class="box sm" role="alertdialog" aria-modal="true"><h2>Delete task?</h2><p class="muted">This cannot be undone.</p><div class="row"><span></span><span><button id="cn" class="btn">Cancel</button> <button id="ok" class="primary danger">Delete</button></span></div></div></div>
+<div id="toasts"></div>
+<div class="modal" id="pal"><div class="box" role="dialog" aria-label="Command palette"><input id="pq" placeholder="Type a command or task…  (Esc to close)" autocomplete="off"><div id="pl"></div></div></div>
+<script id="boot">
+/* Loads local copies from /vendor first (run download-vendor.sh); falls back to CDN. */
+const L = (a, b) => new Promise(r => { const s = document.createElement('script'); s.src = a; s.onload = r; s.onerror = () => { const f = document.createElement('script'); f.src = b; f.onload = f.onerror = r; document.head.append(f); }; document.head.append(s); });
+Promise.all([L('vendor/chart.umd.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js'), L('vendor/lucide.min.js', 'https://cdn.jsdelivr.net/npm/lucide@0.400.0/dist/umd/lucide.min.js')])
+  .then(() => { const a = document.createElement('script'); a.src = 'js/app.js'; document.body.append(a); });
+</script></body></html>
