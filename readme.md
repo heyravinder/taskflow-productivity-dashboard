@@ -6,6 +6,11 @@ A responsive task manager with a Kanban board, calendar, analytics and streak tr
 
 [View TaskFlow Live](https://capable-dasik-b9d47a.netlify.app/)
 
+## Project Preview
+
+![TaskFlow Dashboard](screenshots/dashboard.png)
+
+
 ## Features
 - Dashboard: total / completed / pending / overdue counters, completion bar, daily goal, streak
 - Tasks: add, edit, delete (confirm), duplicate, archive/restore, subtasks, notes, priorities, custom categories, recurring tasks
