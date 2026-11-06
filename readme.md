@@ -8,7 +8,7 @@ A responsive task manager with a Kanban board, calendar, analytics and streak tr
 
 ## Project Preview
 
-![TaskFlow Dashboard](screenshots/dashboard.png)
+![TaskFlow Dashboard](dashboard.png)
 
 
 ## Features
