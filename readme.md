@@ -2,7 +2,9 @@
 
 A responsive task manager with a Kanban board, calendar, analytics and streak tracking. Built with vanilla JavaScript — no framework, no backend.
 
-**Live demo:** _add your Vercel/GitHub Pages link_ · **Screenshots:** _add to `/screenshots`_
+## Live Demo
+
+[View TaskFlow Live](https://capable-dasik-b9d47a.netlify.app/)
 
 ## Features
 - Dashboard: total / completed / pending / overdue counters, completion bar, daily goal, streak
